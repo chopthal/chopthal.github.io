@@ -1,4 +1,7 @@
-# Simple gitblog guide
+---
+layout: post
+title: Simple gitblog guide
+---
 
 ## Repository name
 
