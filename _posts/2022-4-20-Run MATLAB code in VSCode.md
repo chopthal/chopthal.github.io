@@ -18,7 +18,7 @@ title: Run MATLAB code in VSCode
 
   3. MATLAB Engine API for Python 설치 (관리자 권한 필요)
 
-     ```powershell
+     ```
      cd "matlabroot\extern\engines\python"
      python setup.py install
      ```
