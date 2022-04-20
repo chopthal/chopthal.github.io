@@ -3,8 +3,6 @@ layout: post
 title: Run MATLAB code in VSCode
 ---
 
-# Run MATLAB code in VSCode
-
 ### Matlab code 실행
 
 - Matlab Interactive Terminal
