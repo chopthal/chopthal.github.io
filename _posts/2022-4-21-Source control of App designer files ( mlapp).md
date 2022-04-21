@@ -1,0 +1,61 @@
+---
+layout: post
+title: Source control of App designer files (.mlapp)
+---
+
+Matlab의 GUI 프로그래밍 툴인 app designer는 최근 많은 업데이트를 거듭하면서 기존에는 Matlab을 통해 컴파일 하기 어려웠던 예쁜 디자인과 다양한 기능을 가진 PC app을 만드는 것이 가능해졌습니다.
+
+다만, app designer를 통해 생성되는 mlapp 형식의 파일은 m파일과 달리 깃헙 웹페이지 상에서 코드를 확인할 수 없다보니 git을 통한 버전 관리에 어려움이 있었습니다.
+
+기존에는 mlapp 파일을 m파일로 export 하거나 designer를 사용하지 않는 프로그래밍 방식으로 GUI를 작성하여 사용하였으나, 최근 Matlab에서 지원하는 source control을 사용함으로써 이러한 불편함을 해소할 수 있어서 소개하려고 합니다.
+
+Matlab 2022a 버전에서 진행하였습니다.
+
+먼저, Matlab에서 Source control을 사용하도록 설정합니다.
+
+1. Preferences - General - Source Control - Enable MathWorks source control integration 버튼 활성화
+2. OK 또는 Apply 버튼을 눌러 설정 저장
+
+![_config.yml]({{ site.baseurl }}/images/2022-4-21-Source control of App designer files ( mlapp)/Untitled.png)
+
+다음은 터미널, bash 등을 이용해 해당 폴더에서 git init을 수행합니다. (git init, remote 등에 대해서는 자세히 설명하지 않습니다.)
+
+app1.mlapp 파일을 하나 생성하고 해당 폴더에서 git init 명령을 수행해주면, .git 폴더와 함께 Git 상태 표시가 생성된 것을 확인할 수 있습니다.
+
+![_config.yml]({{ site.baseurl }}/images/2022-4-21-Source control of App designer files ( mlapp)/Untitled 1.png)
+
+파일 우클릭 - Source Control - Add to Git 을 클릭하여 git add 작업을 수행해 주고
+
+![_config.yml]({{ site.baseurl }}/images/2022-4-21-Source control of App designer files ( mlapp)/Untitled 2.png)
+
+이번에는 View and Commit Changes를 클릭하여 git commit 작업을 수행합니다.
+
+![_config.yml]({{ site.baseurl }}/images/2022-4-21-Source control of App designer files ( mlapp)/Untitled 3.png)
+
+적당한 설명 (Comment)와 함께 Commit 버튼을 눌러 완료합니다.
+
+![_config.yml]({{ site.baseurl }}/images/2022-4-21-Source control of App designer files ( mlapp)/Untitled 4.png)
+
+Git 상태 표시가 녹색으로 바뀌며 Commit이 완료되었습니다.
+
+![_config.yml]({{ site.baseurl }}/images/2022-4-21-Source control of App designer files ( mlapp)/Untitled 5.png)
+
+첫 번째 커밋 완료 후 파일을 코드를 추가해 파일을 변형시켜 보겠습니다.
+
+![_config.yml]({{ site.baseurl }}/images/2022-4-21-Source control of App designer files ( mlapp)/Untitled 6.png)
+
+Git 상태가 청색으로 변합니다.
+
+![_config.yml]({{ site.baseurl }}/images/2022-4-21-Source control of App designer files ( mlapp)/Untitled 7.png)
+
+파일 우클릭 - Source Control - Compare to Revision 을 클릭하고
+
+![_config.yml]({{ site.baseurl }}/images/2022-4-21-Source control of App designer files ( mlapp)/Untitled 8.png)
+
+Revision을 선택한 후 compare to Local 버튼을 눌러주면
+
+![_config.yml]({{ site.baseurl }}/images/2022-4-21-Source control of App designer files ( mlapp)/Untitled 9.png)
+
+선택된 커밋과 현재 코드의 차이점을 비교하는 창이 생성되며, 변경된 부분은 아래와 같이 하이라이트 되어 표시됩니다.
+
+![_config.yml]({{ site.baseurl }}/images/2022-4-21-Source control of App designer files ( mlapp)/Untitled 10.png)
