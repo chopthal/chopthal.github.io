@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Run MATLAB code in VSCode
+title: (MATLAB) Run MATLAB code in VSCode
 ---
 
 ### Matlab code 실행

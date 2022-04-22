@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Source control of App designer files (.mlapp)
+title: (MATLAB) Source control of App designer files (.mlapp)
 ---
 
 Matlab의 GUI 프로그래밍 툴인 app designer는 최근 많은 업데이트를 거듭하면서 기존에는 Matlab을 통해 컴파일 하기 어려웠던 예쁜 디자인과 다양한 기능을 가진 PC app을 만드는 것이 가능해졌습니다.

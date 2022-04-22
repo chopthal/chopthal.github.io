@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Simple gitblog guide
+title: (Git) Simple gitblog guide
 ---
 
 ## Repository name
@@ -39,5 +39,3 @@ $ gem install github-pages
 ```bash
 $ jekyll serve
 ```
-
-
