@@ -1,0 +1,97 @@
+---
+layout: post
+title: (MATLAB) Montage 함수 개선
+---
+
+## Montage 함수
+
+- montage 함수는 여러장의 개별 이미지를 원하는 크기의 직사각형 모양으로 합쳐 줍니다.
+- 아래는 Matlab 공식 사이트에서 제공하는 montage 활용 예시입니다.
+
+```matlab
+load mri
+montage(D, map)
+```
+
+### 결과 이미지
+
+![_config.yml]({{ site.baseurl }}/images/2022-4-23-(Matlab) Montage 함수 개선/Untitled.png)
+
+- 17개의 이미지를 자동으로 적절한 크기 (6 by 5)로 정렬해 주며, 부족한 3칸은 빈 칸으로 채워 몽타쥬 이미지를 만들어 주는 매우 편리한 기능입니다.
+- Size, ThumbnailSize 등의 옵션을 통해 원하는 크기, 배열, 해상도로 이미지를 합칠 수 있는 유용한 기능을 제공합니다.
+
+## 세부 옵션
+
+### 이미지 크기 (해상도) 설정
+
+- 별도의 설정이 없으면 완성된 몽타쥬 이미지의 해상도는 자동으로 정해집니다.
+- ThumbnailSize 옵션은 한 이미지의 해상도 (width, height)를 입력할 수 있습니다.
+- 원하는 크기의 결과 이미지를 얻어내기 위해서는 ThumbnailSize 옵션을 적절하게 설정해줘야 합니다.
+
+### Montage 자동 출력
+
+- Parent 옵션을 설정하지 않으면 montage 함수는 자동으로 figure/axes를 선택하여 결과 이미지를 출력합니다 (imshow).
+- 이 경우 결과 이미지의 해상도는 ThumbnailSize에서 설정해 준 값에 이미지 수를 곱해준 것과 같은 값을 갖습니다.
+  ```matlab
+  resultAuto = montage(D, map, 'ThumbnailSize', [1000, 1000]);
+  ```
+- 이 때의 문제점은, gca (최근 선택된 axes)가 있는 경우 해당 axes에 임의로 몽타쥬 결과 이미지가 출력되어 중요한 데이터가 손실될 수 있습니다.
+
+### Parent 옵션
+
+- Axes의 충돌을 방지하기 위해 아래와 같이 새로운 figure/axes를 생성하고 생성된 axes에 몽타쥬 결과를 출력해 보겠습니다.
+  ```matlab
+  fig = figure;
+  ax = axes;
+  resultTargetAxes = montage(D, map,...
+  									 'ThumbnailSize', [1000, 1000], 'Parent', ax);
+  ```
+
+### 자동 resizing
+
+- 위의 두 코드의 차이점은 ‘Parent’ 옵션으로 특정 axes를 설정했는지 여부입니다.
+- 결과 이미지를 비교해보면 resultTargetAxes는 입력된 ThumbnailSize가 유지되지 않고 자동으로 resizing되어 저장된 것을 확인할 수 있습니다.
+  ![_config.yml]({{ site.baseurl }}/images/2022-4-23-(Matlab) Montage 함수 개선/Untitled 1.png)
+- Matlab 공식 사이트에서는 다음과 같이 Parent 옵션을 설명하고 있습니다.
+  ![_config.yml]({{ site.baseurl }}/images/2022-4-23-(Matlab) Montage 함수 개선/Untitled 2.png)
+
+## 함수 개선
+
+- Axes 자동 생성을 통한 기존 axes와의 충돌 방지
+- ThumbnailSize를 통해 입력한 해상도를 유지 (자동 resizing 방지)
+- 내장 함수의 결과 출력 (imshow) 항목을 비활성화 하여 Parent 옵션을 사용하지 않고 이미지를 획득 할 수 있도록 개선
+
+  ```matlab
+  if isempty(cmap)
+      if displayRangeSpecified
+          hh = imshow(bigImage, displayRange, parentArgs{:},interpolationArgs{:});
+          if size(bigImage,3)==3
+              % DisplayRange has no impact on RGB images.
+              warning(message('MATLAB:images:montage:displayRangeForRGB'));
+          end
+      else
+
+  % 이 부분을 수정
+  %         hh = imshow(bigImage ,parentArgs{:},interpolationArgs{:});
+          hh = bigImage;
+
+      end
+  else
+      % Pass cmap along to IMSHOW.
+  % 이 부분을 수정
+  %    hh = imshow(bigImage,cmap,parentArgs{:},interpolationArgs{:});
+  			hh = bigImage;
+  end
+  ```
+
+- 아래와 같이 실행하여 기존과 같은 결과를 얻을 수 있습니다.
+  ```matlab
+  resultMontage = montageWithoutImshow(D, map, 'ThumbnailSize', [1000, 1000]);
+  imshow(resultMontage)
+  ```
+  ![_config.yml]({{ site.baseurl }}/images/2022-4-23-(Matlab) Montage 함수 개선/Untitled 3.png)
+
+## Reference
+
+- [https://kr.mathworks.com/help/images/ref/montage.html](https://kr.mathworks.com/help/images/ref/montage.html)
+- 코드 수정에 도움을 주신 dolmania님 감사합니다.
