@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang=kr>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="Repository name &amp;#71;&amp;#x69;&amp;#116;&amp;#x49;&amp;#68;&amp;#64;&amp;#x67;&amp;#x69;&amp;#116;&amp;#x68;&amp;#x75;&amp;#x62;&amp;#46;&amp;#x63;&amp;#111;&amp;#109; 위와 같이 repository name을 설정하면 깃블로그 주소는 GitID.github.io로 자동 설정  Theme Jekyll-now 적용https:&#x2F;&#x2F;git">
+<meta property="og:type" content="article">
+<meta property="og:title" content="(Git) Simple gitblog guide">
+<meta property="og:url" content="https://chopthal.github.io/2022/04/21/2022-4-21-220421_1/index.html">
+<meta property="og:site_name" content="Be greedy sustainably!">
+<meta property="og:description" content="Repository name &amp;#71;&amp;#x69;&amp;#116;&amp;#x49;&amp;#68;&amp;#64;&amp;#x67;&amp;#x69;&amp;#116;&amp;#x68;&amp;#x75;&amp;#x62;&amp;#46;&amp;#x63;&amp;#111;&amp;#109; 위와 같이 repository name을 설정하면 깃블로그 주소는 GitID.github.io로 자동 설정  Theme Jekyll-now 적용https:&#x2F;&#x2F;git">
+<meta property="og:locale">
+<meta property="article:published_time" content="2022-04-21T01:20:37.000Z">
+<meta property="article:modified_time" content="2023-05-31T07:08:16.143Z">
+<meta property="article:author" content="Chopthal">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>(Git) Simple gitblog guide</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="القائمة"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="القائمة"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="الأعلى" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">홈</a></li><!--
+     --><!--
+       --><li><a href="/about/">소개</a></li><!--
+     --><!--
+       --><li><a href="/archives/">글 목록</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="http://github.com/probberechts">프로젝트</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="이전" href="/2022/04/21/2022-4-21-220421_2/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="다음" href="/2022/04/20/2022-4-20-220420_1/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="맨 위로" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="공유" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">이전</span>
+      <span id="i-next" class="info" style="display:none;">다음</span>
+      <span id="i-top" class="info" style="display:none;">맨 위로</span>
+      <span id="i-share" class="info" style="display:none;">공유</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://chopthal.github.io/2022/04/21/2022-4-21-220421_1/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://chopthal.github.io/2022/04/21/2022-4-21-220421_1/&text=(Git) Simple gitblog guide"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://chopthal.github.io/2022/04/21/2022-4-21-220421_1/&title=(Git) Simple gitblog guide"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://chopthal.github.io/2022/04/21/2022-4-21-220421_1/&is_video=false&description=(Git) Simple gitblog guide"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=(Git) Simple gitblog guide&body=Check out this article: https://chopthal.github.io/2022/04/21/2022-4-21-220421_1/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://chopthal.github.io/2022/04/21/2022-4-21-220421_1/&title=(Git) Simple gitblog guide"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://chopthal.github.io/2022/04/21/2022-4-21-220421_1/&title=(Git) Simple gitblog guide"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://chopthal.github.io/2022/04/21/2022-4-21-220421_1/&title=(Git) Simple gitblog guide"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://chopthal.github.io/2022/04/21/2022-4-21-220421_1/&title=(Git) Simple gitblog guide"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://chopthal.github.io/2022/04/21/2022-4-21-220421_1/&name=(Git) Simple gitblog guide&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://chopthal.github.io/2022/04/21/2022-4-21-220421_1/&t=(Git) Simple gitblog guide"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Repository-name"><span class="toc-number">1.</span> <span class="toc-text">Repository name</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Theme"><span class="toc-number">2.</span> <span class="toc-text">Theme</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Blog-setting-x2F-Posting"><span class="toc-number">3.</span> <span class="toc-text">Blog setting &#x2F; Posting</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Local-%ED%99%98%EA%B2%BD-%EC%84%A4%EC%A0%95"><span class="toc-number">4.</span> <span class="toc-text">Local 환경 설정</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Ruby-%EC%84%A4%EC%B9%98"><span class="toc-number">4.1.</span> <span class="toc-text">Ruby 설치</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Jekyll-and-plug-ins-%EC%84%A4%EC%B9%98"><span class="toc-number">4.2.</span> <span class="toc-text">Jekyll and plug-ins 설치</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Jekyll-server-on"><span class="toc-number">4.3.</span> <span class="toc-text">Jekyll server on</span></a></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        (Git) Simple gitblog guide
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">Chopthal</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2022-04-21T01:20:37.000Z" class="dt-published" itemprop="datePublished">2022-04-21</time>
+        
+      
+    </div>
+
+
+      
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <h2 id="Repository-name"><a href="#Repository-name" class="headerlink" title="Repository name"></a>Repository name</h2><ul>
+<li><a href="mailto:&#71;&#x69;&#116;&#x49;&#68;&#64;&#x67;&#x69;&#116;&#x68;&#x75;&#x62;&#46;&#x63;&#111;&#109;">&#71;&#x69;&#116;&#x49;&#68;&#64;&#x67;&#x69;&#116;&#x68;&#x75;&#x62;&#46;&#x63;&#111;&#109;</a></li>
+<li>위와 같이 repository name을 설정하면 깃블로그 주소는 GitID.github.io로 자동 설정</li>
+</ul>
+<h2 id="Theme"><a href="#Theme" class="headerlink" title="Theme"></a>Theme</h2><ul>
+<li>Jekyll-now 적용<br><a target="_blank" rel="noopener" href="https://github.com/barryclark/jekyll-now">https://github.com/barryclark/jekyll-now</a></li>
+<li>원하는 테마 fork 또는 download하여 repository에 붙여 넣기</li>
+</ul>
+<h2 id="Blog-setting-x2F-Posting"><a href="#Blog-setting-x2F-Posting" class="headerlink" title="Blog setting &#x2F; Posting"></a>Blog setting &#x2F; Posting</h2><ul>
+<li>Github repository에서 _config.yml 내용 수정 (직관적으로 변경 가능)</li>
+<li>Posting의 경우 _posts 폴더에 .md (markdown) 파일을 추가</li>
+</ul>
+<h2 id="Local-환경-설정"><a href="#Local-환경-설정" class="headerlink" title="Local 환경 설정"></a>Local 환경 설정</h2><h3 id="Ruby-설치"><a href="#Ruby-설치" class="headerlink" title="Ruby 설치"></a>Ruby 설치</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ brew install rbenv</span><br><span class="line">$ rbenv versions</span><br></pre></td></tr></table></figure>
+
+<h3 id="Jekyll-and-plug-ins-설치"><a href="#Jekyll-and-plug-ins-설치" class="headerlink" title="Jekyll and plug-ins 설치"></a>Jekyll and plug-ins 설치</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ gem install github-pages</span><br></pre></td></tr></table></figure>
+
+<h3 id="Jekyll-server-on"><a href="#Jekyll-server-on" class="headerlink" title="Jekyll server on"></a>Jekyll server on</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ jekyll serve</span><br></pre></td></tr></table></figure>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/">홈</a></li>
+        
+          <li><a href="/about/">소개</a></li>
+        
+          <li><a href="/archives/">글 목록</a></li>
+        
+          <li><a target="_blank" rel="noopener" href="http://github.com/probberechts">프로젝트</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Repository-name"><span class="toc-number">1.</span> <span class="toc-text">Repository name</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Theme"><span class="toc-number">2.</span> <span class="toc-text">Theme</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Blog-setting-x2F-Posting"><span class="toc-number">3.</span> <span class="toc-text">Blog setting &#x2F; Posting</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Local-%ED%99%98%EA%B2%BD-%EC%84%A4%EC%A0%95"><span class="toc-number">4.</span> <span class="toc-text">Local 환경 설정</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Ruby-%EC%84%A4%EC%B9%98"><span class="toc-number">4.1.</span> <span class="toc-text">Ruby 설치</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Jekyll-and-plug-ins-%EC%84%A4%EC%B9%98"><span class="toc-number">4.2.</span> <span class="toc-text">Jekyll and plug-ins 설치</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Jekyll-server-on"><span class="toc-number">4.3.</span> <span class="toc-text">Jekyll server on</span></a></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://chopthal.github.io/2022/04/21/2022-4-21-220421_1/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://chopthal.github.io/2022/04/21/2022-4-21-220421_1/&text=(Git) Simple gitblog guide"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://chopthal.github.io/2022/04/21/2022-4-21-220421_1/&title=(Git) Simple gitblog guide"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://chopthal.github.io/2022/04/21/2022-4-21-220421_1/&is_video=false&description=(Git) Simple gitblog guide"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=(Git) Simple gitblog guide&body=Check out this article: https://chopthal.github.io/2022/04/21/2022-4-21-220421_1/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://chopthal.github.io/2022/04/21/2022-4-21-220421_1/&title=(Git) Simple gitblog guide"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://chopthal.github.io/2022/04/21/2022-4-21-220421_1/&title=(Git) Simple gitblog guide"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://chopthal.github.io/2022/04/21/2022-4-21-220421_1/&title=(Git) Simple gitblog guide"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://chopthal.github.io/2022/04/21/2022-4-21-220421_1/&title=(Git) Simple gitblog guide"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://chopthal.github.io/2022/04/21/2022-4-21-220421_1/&name=(Git) Simple gitblog guide&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://chopthal.github.io/2022/04/21/2022-4-21-220421_1/&t=(Git) Simple gitblog guide"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> 메뉴</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> 공유</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> 맨 위로</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    저작권 &copy;
+    
+    
+    2016-2023
+    Chopthal
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">홈</a></li><!--
+     --><!--
+       --><li><a href="/about/">소개</a></li><!--
+     --><!--
+       --><li><a href="/archives/">글 목록</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="http://github.com/probberechts">프로젝트</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"클립보드에 복사하였습니다!\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "복사하였습니다!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>
