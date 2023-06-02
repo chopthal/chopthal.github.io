@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang=kr>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="Matlab의 GUI 프로그래밍 툴인 app designer는 최근 많은 업데이트를 거듭하면서 기존에는 Matlab을 통해 컴파일 하기 어려웠던 예쁜 디자인과 다양한 기능을 가진 PC app을 만드는 것이 가능해졌습니다. 다만, app designer를 통해 생성되는 mlapp 형식의 파일은 m파일과 달리 깃헙 웹페이지 상에서 코드를 확인할 수 없다보니 g">
+<meta property="og:type" content="article">
+<meta property="og:title" content="(MATLAB) Source control of App designer files (.mlapp)">
+<meta property="og:url" content="https://chopthal.github.io/2022/04/21/2022-4-21-220421_2/index.html">
+<meta property="og:site_name" content="Be greedy sustainably!">
+<meta property="og:description" content="Matlab의 GUI 프로그래밍 툴인 app designer는 최근 많은 업데이트를 거듭하면서 기존에는 Matlab을 통해 컴파일 하기 어려웠던 예쁜 디자인과 다양한 기능을 가진 PC app을 만드는 것이 가능해졌습니다. 다만, app designer를 통해 생성되는 mlapp 형식의 파일은 m파일과 달리 깃헙 웹페이지 상에서 코드를 확인할 수 없다보니 g">
+<meta property="og:locale">
+<meta property="og:image" content="https://chopthal.github.io/images/2022-4-21-220421_2/Untitled.png">
+<meta property="og:image" content="https://chopthal.github.io/images/2022-4-21-220421_2/Untitled1.png">
+<meta property="og:image" content="https://chopthal.github.io/images/2022-4-21-220421_2/Untitled2.png">
+<meta property="og:image" content="https://chopthal.github.io/images/2022-4-21-220421_2/Untitled3.png">
+<meta property="og:image" content="https://chopthal.github.io/images/2022-4-21-220421_2/Untitled4.png">
+<meta property="og:image" content="https://chopthal.github.io/images/2022-4-21-220421_2/Untitled5.png">
+<meta property="og:image" content="https://chopthal.github.io/images/2022-4-21-220421_2/Untitled6.png">
+<meta property="og:image" content="https://chopthal.github.io/images/2022-4-21-220421_2/Untitled7.png">
+<meta property="og:image" content="https://chopthal.github.io/images/2022-4-21-220421_2/Untitled8.png">
+<meta property="og:image" content="https://chopthal.github.io/images/2022-4-21-220421_2/Untitled9.png">
+<meta property="og:image" content="https://chopthal.github.io/images/2022-4-21-220421_2/Untitled10.png">
+<meta property="article:published_time" content="2022-04-21T01:30:37.000Z">
+<meta property="article:modified_time" content="2023-06-02T13:50:32.653Z">
+<meta property="article:author" content="Chopthal">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://chopthal.github.io/images/2022-4-21-220421_2/Untitled.png">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>(MATLAB) Source control of App designer files (.mlapp)</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">홈</a></li><!--
+     --><!--
+       --><li><a href="/about/">소개</a></li><!--
+     --><!--
+       --><li><a href="/archives/">글 목록</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="이전" href="/2022/04/22/2022-4-22-220422_1/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="다음" href="/2022/04/21/2022-4-21-220421_1/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="맨 위로" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="공유" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">이전</span>
+      <span id="i-next" class="info" style="display:none;">다음</span>
+      <span id="i-top" class="info" style="display:none;">맨 위로</span>
+      <span id="i-share" class="info" style="display:none;">공유</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://chopthal.github.io/2022/04/21/2022-4-21-220421_2/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://chopthal.github.io/2022/04/21/2022-4-21-220421_2/&text=(MATLAB) Source control of App designer files (.mlapp)"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://chopthal.github.io/2022/04/21/2022-4-21-220421_2/&title=(MATLAB) Source control of App designer files (.mlapp)"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://chopthal.github.io/2022/04/21/2022-4-21-220421_2/&is_video=false&description=(MATLAB) Source control of App designer files (.mlapp)"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=(MATLAB) Source control of App designer files (.mlapp)&body=Check out this article: https://chopthal.github.io/2022/04/21/2022-4-21-220421_2/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://chopthal.github.io/2022/04/21/2022-4-21-220421_2/&title=(MATLAB) Source control of App designer files (.mlapp)"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://chopthal.github.io/2022/04/21/2022-4-21-220421_2/&title=(MATLAB) Source control of App designer files (.mlapp)"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://chopthal.github.io/2022/04/21/2022-4-21-220421_2/&title=(MATLAB) Source control of App designer files (.mlapp)"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://chopthal.github.io/2022/04/21/2022-4-21-220421_2/&title=(MATLAB) Source control of App designer files (.mlapp)"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://chopthal.github.io/2022/04/21/2022-4-21-220421_2/&name=(MATLAB) Source control of App designer files (.mlapp)&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://chopthal.github.io/2022/04/21/2022-4-21-220421_2/&t=(MATLAB) Source control of App designer files (.mlapp)"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        (MATLAB) Source control of App designer files (.mlapp)
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">Chopthal</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2022-04-21T01:30:37.000Z" class="dt-published" itemprop="datePublished">2022-04-21</time>
+        
+      
+    </div>
+
+
+      
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <p>Matlab의 GUI 프로그래밍 툴인 app designer는 최근 많은 업데이트를 거듭하면서 기존에는 Matlab을 통해 컴파일 하기 어려웠던 예쁜 디자인과 다양한 기능을 가진 PC app을 만드는 것이 가능해졌습니다.</p>
+<p>다만, app designer를 통해 생성되는 mlapp 형식의 파일은 m파일과 달리 깃헙 웹페이지 상에서 코드를 확인할 수 없다보니 git을 통한 버전 관리에 어려움이 있었습니다.</p>
+<p>기존에는 mlapp 파일을 m파일로 export 하거나 designer를 사용하지 않는 프로그래밍 방식으로 GUI를 작성하여 사용하였으나, 최근 Matlab에서 지원하는 source control을 사용함으로써 이러한 불편함을 해소할 수 있어서 소개하려고 합니다.</p>
+<p>Matlab 2022a 버전에서 진행하였습니다.</p>
+<p>먼저, Matlab에서 Source control을 사용하도록 설정합니다.</p>
+<ol>
+<li>Preferences - General - Source Control - Enable MathWorks source control integration 버튼 활성화</li>
+<li>OK 또는 Apply 버튼을 눌러 설정 저장</li>
+</ol>
+<p><img src="/images/2022-4-21-220421_2/Untitled.png"></p>
+<p>다음은 터미널, bash 등을 이용해 해당 폴더에서 git init을 수행합니다. (git init, remote 등에 대해서는 자세히 설명하지 않습니다.)</p>
+<p>app1.mlapp 파일을 하나 생성하고 해당 폴더에서 git init 명령을 수행해주면, .git 폴더와 함께 Git 상태 표시가 생성된 것을 확인할 수 있습니다.</p>
+<p><img src="/images/2022-4-21-220421_2/Untitled1.png"></p>
+<p>파일 우클릭 - Source Control - Add to Git 을 클릭하여 git add 작업을 수행해 주고</p>
+<p><img src="/images/2022-4-21-220421_2/Untitled2.png"></p>
+<p>이번에는 View and Commit Changes를 클릭하여 git commit 작업을 수행합니다.</p>
+<p><img src="/images/2022-4-21-220421_2/Untitled3.png"></p>
+<p>적당한 설명 (Comment)와 함께 Commit 버튼을 눌러 완료합니다.</p>
+<p><img src="/images/2022-4-21-220421_2/Untitled4.png"></p>
+<p>Git 상태 표시가 녹색으로 바뀌며 Commit이 완료되었습니다.</p>
+<p><img src="/images/2022-4-21-220421_2/Untitled5.png"></p>
+<p>첫 번째 커밋 완료 후 파일을 코드를 추가해 파일을 변형시켜 보겠습니다.</p>
+<p><img src="/images/2022-4-21-220421_2/Untitled6.png"></p>
+<p>Git 상태가 청색으로 변합니다.</p>
+<p><img src="/images/2022-4-21-220421_2/Untitled7.png"></p>
+<p>파일 우클릭 - Source Control - Compare to Revision 을 클릭하고</p>
+<p><img src="/images/2022-4-21-220421_2/Untitled8.png"></p>
+<p>Revision을 선택한 후 compare to Local 버튼을 눌러주면</p>
+<p><img src="/images/2022-4-21-220421_2/Untitled9.png"></p>
+<p>선택된 커밋과 현재 코드의 차이점을 비교하는 창이 생성되며, 변경된 부분은 아래와 같이 하이라이트 되어 표시됩니다.</p>
+<p><img src="/images/2022-4-21-220421_2/Untitled10.png"></p>
+
+  </div>
+</article>
+
+    <div class="blog-post-comments">
+        <div id="disqus_thread">
+            <noscript>코멘트를 보려면 자바스크립트를 활성화하세요.</noscript>
+        </div>
+    </div>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/">홈</a></li>
+        
+          <li><a href="/about/">소개</a></li>
+        
+          <li><a href="/archives/">글 목록</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://chopthal.github.io/2022/04/21/2022-4-21-220421_2/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://chopthal.github.io/2022/04/21/2022-4-21-220421_2/&text=(MATLAB) Source control of App designer files (.mlapp)"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://chopthal.github.io/2022/04/21/2022-4-21-220421_2/&title=(MATLAB) Source control of App designer files (.mlapp)"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://chopthal.github.io/2022/04/21/2022-4-21-220421_2/&is_video=false&description=(MATLAB) Source control of App designer files (.mlapp)"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=(MATLAB) Source control of App designer files (.mlapp)&body=Check out this article: https://chopthal.github.io/2022/04/21/2022-4-21-220421_2/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://chopthal.github.io/2022/04/21/2022-4-21-220421_2/&title=(MATLAB) Source control of App designer files (.mlapp)"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://chopthal.github.io/2022/04/21/2022-4-21-220421_2/&title=(MATLAB) Source control of App designer files (.mlapp)"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://chopthal.github.io/2022/04/21/2022-4-21-220421_2/&title=(MATLAB) Source control of App designer files (.mlapp)"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://chopthal.github.io/2022/04/21/2022-4-21-220421_2/&title=(MATLAB) Source control of App designer files (.mlapp)"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://chopthal.github.io/2022/04/21/2022-4-21-220421_2/&name=(MATLAB) Source control of App designer files (.mlapp)&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://chopthal.github.io/2022/04/21/2022-4-21-220421_2/&t=(MATLAB) Source control of App designer files (.mlapp)"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> 메뉴</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> 공유</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> 맨 위로</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    저작권 &copy;
+    
+    
+    2022-2023
+    Chopthal
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">홈</a></li><!--
+     --><!--
+       --><li><a href="/about/">소개</a></li><!--
+     --><!--
+       --><li><a href="/archives/">글 목록</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"클립보드에 복사하였습니다!\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "복사하였습니다!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+    <script type="text/javascript">
+        var disqus_shortname = 'chopthal';
+
+        (function(){
+            var dsq = document.createElement('script');
+            dsq.type = 'text/javascript';
+            dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        }());
+    </script>
+
+<!-- utterances Comments -->
+
+</body>
+</html>

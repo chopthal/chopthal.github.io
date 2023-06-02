@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang=kr>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="암호화 및 복호화 가능한 AES 알고리즘을 MATLAB에서 활용하는 두 가지 방법에 대해 소개합니다.순수 MATLAB 코드첫 번째는 David Hill 님이 MathWorks 공식 홈페이지에 올려준 MATLAB 코드로 작성된 AES 알고리즘을 활용하는 방법 입니다. Advanced Encryption Standard (AES)-128,192, 256 이 프">
+<meta property="og:type" content="article">
+<meta property="og:title" content="(MATLAB) 양방향 암호화 (AES, .NET)">
+<meta property="og:url" content="https://chopthal.github.io/2022/06/08/2022-6-8-220608_1/index.html">
+<meta property="og:site_name" content="Be greedy sustainably!">
+<meta property="og:description" content="암호화 및 복호화 가능한 AES 알고리즘을 MATLAB에서 활용하는 두 가지 방법에 대해 소개합니다.순수 MATLAB 코드첫 번째는 David Hill 님이 MathWorks 공식 홈페이지에 올려준 MATLAB 코드로 작성된 AES 알고리즘을 활용하는 방법 입니다. Advanced Encryption Standard (AES)-128,192, 256 이 프">
+<meta property="og:locale">
+<meta property="og:image" content="https://chopthal.github.io/images/2022-6-8-220608_1/Untitled.png">
+<meta property="article:published_time" content="2022-06-08T01:20:37.000Z">
+<meta property="article:modified_time" content="2023-06-02T13:50:32.654Z">
+<meta property="article:author" content="Chopthal">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://chopthal.github.io/images/2022-6-8-220608_1/Untitled.png">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>(MATLAB) 양방향 암호화 (AES, .NET)</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">홈</a></li><!--
+     --><!--
+       --><li><a href="/about/">소개</a></li><!--
+     --><!--
+       --><li><a href="/archives/">글 목록</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="이전" href="/2023/05/30/2023-5-30-230530_1/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="다음" href="/2022/05/18/2022-5-18-220518_1/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="맨 위로" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="공유" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">이전</span>
+      <span id="i-next" class="info" style="display:none;">다음</span>
+      <span id="i-top" class="info" style="display:none;">맨 위로</span>
+      <span id="i-share" class="info" style="display:none;">공유</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://chopthal.github.io/2022/06/08/2022-6-8-220608_1/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://chopthal.github.io/2022/06/08/2022-6-8-220608_1/&text=(MATLAB) 양방향 암호화 (AES, .NET)"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://chopthal.github.io/2022/06/08/2022-6-8-220608_1/&title=(MATLAB) 양방향 암호화 (AES, .NET)"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://chopthal.github.io/2022/06/08/2022-6-8-220608_1/&is_video=false&description=(MATLAB) 양방향 암호화 (AES, .NET)"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=(MATLAB) 양방향 암호화 (AES, .NET)&body=Check out this article: https://chopthal.github.io/2022/06/08/2022-6-8-220608_1/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://chopthal.github.io/2022/06/08/2022-6-8-220608_1/&title=(MATLAB) 양방향 암호화 (AES, .NET)"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://chopthal.github.io/2022/06/08/2022-6-8-220608_1/&title=(MATLAB) 양방향 암호화 (AES, .NET)"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://chopthal.github.io/2022/06/08/2022-6-8-220608_1/&title=(MATLAB) 양방향 암호화 (AES, .NET)"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://chopthal.github.io/2022/06/08/2022-6-8-220608_1/&title=(MATLAB) 양방향 암호화 (AES, .NET)"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://chopthal.github.io/2022/06/08/2022-6-8-220608_1/&name=(MATLAB) 양방향 암호화 (AES, .NET)&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://chopthal.github.io/2022/06/08/2022-6-8-220608_1/&t=(MATLAB) 양방향 암호화 (AES, .NET)"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%EC%95%94%ED%98%B8%ED%99%94-%EB%B0%8F-%EB%B3%B5%ED%98%B8%ED%99%94-%EA%B0%80%EB%8A%A5%ED%95%9C-AES-%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98%EC%9D%84-MATLAB%EC%97%90%EC%84%9C-%ED%99%9C%EC%9A%A9%ED%95%98%EB%8A%94-%EB%91%90-%EA%B0%80%EC%A7%80-%EB%B0%A9%EB%B2%95%EC%97%90-%EB%8C%80%ED%95%B4-%EC%86%8C%EA%B0%9C%ED%95%A9%EB%8B%88%EB%8B%A4"><span class="toc-number">1.</span> <span class="toc-text">암호화 및 복호화 가능한 AES 알고리즘을 MATLAB에서 활용하는 두 가지 방법에 대해 소개합니다.</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EC%88%9C%EC%88%98-MATLAB-%EC%BD%94%EB%93%9C"><span class="toc-number"></span> <span class="toc-text">순수 MATLAB 코드</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#NET-class-%ED%99%9C%EC%9A%A9"><span class="toc-number"></span> <span class="toc-text">.NET class 활용</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%EC%95%94%ED%98%B8%ED%99%94-%ED%95%A8%EC%88%98"><span class="toc-number">1.</span> <span class="toc-text">암호화 함수</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EB%B3%B5%ED%98%B8%ED%99%94-%ED%95%A8%EC%88%98"><span class="toc-number">2.</span> <span class="toc-text">복호화 함수</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%ED%85%8C%EC%8A%A4%ED%8A%B8-%EC%BD%94%EB%93%9C"><span class="toc-number">3.</span> <span class="toc-text">테스트 코드</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EC%8B%A4%ED%96%89-%EA%B2%B0%EA%B3%BC"><span class="toc-number">4.</span> <span class="toc-text">실행 결과</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        (MATLAB) 양방향 암호화 (AES, .NET)
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">Chopthal</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2022-06-08T01:20:37.000Z" class="dt-published" itemprop="datePublished">2022-06-08</time>
+        
+      
+    </div>
+
+
+      
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <h3 id="암호화-및-복호화-가능한-AES-알고리즘을-MATLAB에서-활용하는-두-가지-방법에-대해-소개합니다"><a href="#암호화-및-복호화-가능한-AES-알고리즘을-MATLAB에서-활용하는-두-가지-방법에-대해-소개합니다" class="headerlink" title="암호화 및 복호화 가능한 AES 알고리즘을 MATLAB에서 활용하는 두 가지 방법에 대해 소개합니다."></a>암호화 및 복호화 가능한 AES 알고리즘을 MATLAB에서 활용하는 두 가지 방법에 대해 소개합니다.</h3><h2 id="순수-MATLAB-코드"><a href="#순수-MATLAB-코드" class="headerlink" title="순수 MATLAB 코드"></a>순수 MATLAB 코드</h2><p>첫 번째는 David Hill 님이 MathWorks 공식 홈페이지에 올려준 MATLAB 코드로 작성된 AES 알고리즘을 활용하는 방법 입니다.</p>
+<p><a target="_blank" rel="noopener" href="https://kr.mathworks.com/matlabcentral/fileexchange/73412-advanced-encryption-standard-aes-128-192-256?s_tid=srchtitle">Advanced Encryption Standard (AES)-128,192, 256</a></p>
+<p>이 프로그램은 Cipher, InvCipher를 포함한 여러개의 함수로 구현되어 있으며, 적당한 Key 값과 Input 문자를 입력하면 암호화 된 결과를 return하는 구조입니다.</p>
+<p>저자가 함수 사용법을 간단하게 잘 정리해 두었기 때문에, 따로 자세한 설명은 생략합니다.</p>
+<p>다만, 저자의 설명만으로 구현이 어려운 분들은 이 함수들을 활용하여 암호화 및 복호화를 테스트 할 수 있는 코드를 아래의 링크를 통해 공유합니다.</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/chopthal/matlab/tree/master/encrypt_AES">matlab&#x2F;encrypt_AES at master · chopthal&#x2F;matlab</a></p>
+<p>이 어플리케이션은 UseCipher.m 이라는 하나의 함수 내에 모든 함수들을 합치고, 키 값을 감추기 위해 p코드로 변환하였습니다. 원본 m파일은 origin 폴더에서 확인할 수 있습니다.</p>
+<p>AES 알고리즘에 대한 설명은 아래의 링크로 대신합니다.</p>
+<p><a target="_blank" rel="noopener" href="https://www.crocus.co.kr/1230">Crocus</a></p>
+<p>David Hill이 AES 알고리즘을 MATLAB 함수로 구현해 준 덕분에 MATLAB 단일 코드만으로 암호화 시퀀스를 구현할 수 있게 되었습니다. 또한 행렬 연산에 최적화 된 MATLAB 프로그램의 특성 때문인지, 아래 소개할 두 번째 방법에 비해 단위 문자열 (16, 32 문자)의 암호화 및 복호화 속도가 빠른 장점을 갖습니다.</p>
+<p>다만, 이 함수의 단점은 Cipher 함수가 한 번에 처리할 수 있는 문자가 정해져 있으므로 (16 또는 32글자), 많은 수의 문자를 암호화 및 복호화 하기 위해서는 반복문을 사용하는 것이 불가피 합니다. 비밀번호와 같은 짧은 문장을 암호화 하기에는 매우 효율적이지만 장시간 로깅된 데이터를 처리하는 등 글자 수가 많은 경우에는 적용이 어려울 수 있습니다. 예를 들어, 16글자를 암호화 하는데 약 6 ms의 시간이 소요되며, 16 MB의 데이터를 암호화 하기 위해서는 6,000 초 이상이 필요합니다.</p>
+<h2 id="NET-class-활용"><a href="#NET-class-활용" class="headerlink" title=".NET class 활용"></a>.NET class 활용</h2><p>이전 SHA256 암호화 게시물에서 간단하게 소개했던 것과 같이, MATLAB에서 .NET의 속성들을 일부 활용하는 것이 가능합니다.</p>
+<p><a href="https://chopthal.github.io/220512_1/">(MATLAB) SHA256 암호화 기반 Login 기능 구현</a></p>
+<p><a target="_blank" rel="noopener" href="https://kr.mathworks.com/help/matlab/properties.html?s_tid=CRUX_lftnav">MATLAB의 .NET 속성</a></p>
+<p>소개할 두 번째 방법을 통해 .NET의 Aes, MemoryStream, CryptoStream 클래스를 통해 반복문을 사용하지 않고 장문의 텍스트를 짧은 시간에 암호화 및 복호화 할 수 있습니다.</p>
+<p>이 방법에서 소개하는 코드는 아래의 Microsoft 공식 문서와 RijndaelManaged 알고리즘을 c#으로 구현한 개인 블로그 게시물을 참고하여 작성하였습니다.</p>
+<p><a target="_blank" rel="noopener" href="https://docs.microsoft.com/ko-kr/dotnet/api/system.security.cryptography.aes?view=net-6.0">Aes 클래스 (System.Security.Cryptography)</a></p>
+<p><a target="_blank" rel="noopener" href="https://nickname.tistory.com/25">C# AES 암호화</a></p>
+<p>주의해야 할 점은,</p>
+<ul>
+<li><del>c#의 using 문법을 사용할 수 없기 때문에 stream을 닫는 과정에서 오류가 발생할 수 있어, 메모리 누수가 발생할 수 있습니다.</del></li>
+<li><del>Encoding, Convert 과정에서 문자열이 소실될 수 있습니다. 이 부분은 아직 이해도가 부족하여 향 후 개선 예정입니다.</del></li>
+<li><del>암호화 → 복호화를 거친 후의 결과 문장에는 blank (\0, null) 문자들이 포함되어 있어 암호화 이전의 원본 문장과 완벽하게 일치하지는 않습니다.</del></li>
+</ul>
+<hr>
+<p>June 9, 2022 위 문제점들은 해결되었습니다.</p>
+<ul>
+<li>stream.Close() 를 추가 하였습니다. 기존 에러는 Decrypt 객체에서 padding을 PKCS7에서 None으로 변경하여 해결하였습니다.</li>
+<li>문자열 소실은 지원되는 아스키 코드 범위를 넘어서는 문자를 입력할 때 발생했던 문제로, dummy 데이터를 추가하는 코드를 제거하였습니다.</li>
+</ul>
+<h3 id="암호화-함수"><a href="#암호화-함수" class="headerlink" title="암호화 함수"></a>암호화 함수</h3><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">output</span> = <span class="title">AesEncrypt</span><span class="params">(input, key, iv)</span></span></span><br><span class="line">    import System.*;</span><br><span class="line">    import System.Text.*;</span><br><span class="line">    import System.IO.*;</span><br><span class="line">    import System.Security.Cryptography.*;</span><br><span class="line"></span><br><span class="line">    aesAlg = Aes.Create();</span><br><span class="line">    aesAlg.Key = Encoding.UTF8.GetBytes(key);</span><br><span class="line">    aesAlg.IV = Encoding.UTF8.GetBytes(iv);</span><br><span class="line">    aesAlg.Padding = PaddingMode.PKCS7;</span><br><span class="line"></span><br><span class="line">    encryptor = aesAlg.CreateEncryptor(aesAlg.Key, aesAlg.IV);</span><br><span class="line">    msEncrypt = MemoryStream();</span><br><span class="line">    csEncrypt = CryptoStream(msEncrypt, encryptor, CryptoStreamMode.Write);</span><br><span class="line">    xXml = Encoding.UTF8.GetBytes(input);</span><br><span class="line">    csEncrypt.Write(xXml, <span class="number">0</span>, xXml.Length);</span><br><span class="line">    buf = msEncrypt.ToArray();</span><br><span class="line">    output = Convert.ToBase64String(buf, <span class="number">0</span>, buf.Length, Base64FormattingOptions.None);</span><br><span class="line">    output = char(output);</span><br><span class="line"></span><br><span class="line">    csEncrypt.Close; msEncrypt.Close;</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="복호화-함수"><a href="#복호화-함수" class="headerlink" title="복호화 함수"></a>복호화 함수</h3><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">output</span> = <span class="title">AesDecrypt</span><span class="params">(input, key, iv)</span></span></span><br><span class="line">    import System.*;</span><br><span class="line">    import System.Text.*;</span><br><span class="line">    import System.IO.*;</span><br><span class="line">    import System.Security.Cryptography.*;</span><br><span class="line"></span><br><span class="line">    aesAlg = Aes.Create();</span><br><span class="line">    aesAlg.Key = Encoding.UTF8.GetBytes(key);</span><br><span class="line">    aesAlg.IV = Encoding.UTF8.GetBytes(iv);</span><br><span class="line">    aesAlg.Padding = PaddingMode.None;</span><br><span class="line"></span><br><span class="line">    decryptor = aesAlg.CreateDecryptor(aesAlg.Key, aesAlg.IV);</span><br><span class="line">    msDecrypt = MemoryStream();</span><br><span class="line">    csDecrypt = CryptoStream(msDecrypt, decryptor, CryptoStreamMode.Write);</span><br><span class="line">    xXml = Convert.FromBase64String(input);</span><br><span class="line">    csDecrypt.Write(xXml, <span class="number">0</span>, xXml.Length);</span><br><span class="line">    buf = msDecrypt.ToArray();</span><br><span class="line">    tmp = Encoding.UTF8.GetString(buf);</span><br><span class="line">    output = char(tmp);</span><br><span class="line"></span><br><span class="line">    csDecrypt.Close; msDecrypt.Close;</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>System.Security.Cryptography 클래스 내 Aes 객체 상속</li>
+<li>MemoryStream, CryptoStream 객체를 가져와 input 문자열을 암호화</li>
+<li>암호화 결과를 String으로 변환한 후 MATLAB 함수인 char를 이용하여 MATLAB string으로 변환</li>
+</ul>
+<h3 id="테스트-코드"><a href="#테스트-코드" class="headerlink" title="테스트 코드"></a>테스트 코드</h3><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">% 현재 디바이스의 .NET 지원 여부 확인</span></span><br><span class="line"><span class="keyword">if</span> ~NET.isNETSupported</span><br><span class="line">    <span class="built_in">disp</span>(<span class="string">&#x27;#NET is not supported in this system.&#x27;</span>)</span><br><span class="line">    <span class="keyword">return</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="comment">% System.String 사용을 위한 import</span></span><br><span class="line">import System.*;</span><br><span class="line"></span><br><span class="line">key = <span class="string">&quot;00000000000000000000000000000000&quot;</span>; <span class="comment">% length : 32</span></span><br><span class="line">iv = <span class="string">&quot;0000000000000000&quot;</span>; <span class="comment">% length : 16</span></span><br><span class="line"></span><br><span class="line"><span class="comment">% 길이 20의 랜덤 문자열 생성</span></span><br><span class="line">str = char(<span class="built_in">floor</span>(<span class="built_in">rand</span>(<span class="number">1</span>, <span class="number">20</span>) * (double(<span class="string">&#x27;z&#x27;</span>) - double(<span class="string">&#x27;A&#x27;</span>) + <span class="number">1</span>) + double(<span class="string">&#x27;A&#x27;</span>)));</span><br><span class="line"><span class="comment">% 문자열 개수가 16의 배수가 아닌 경우 뒤에 blank (&#x27; &#x27;)를 채움</span></span><br><span class="line">modStr = <span class="built_in">mod</span>(<span class="built_in">length</span>(str), <span class="number">16</span>);</span><br><span class="line"><span class="keyword">if</span> modStr &gt; <span class="number">0</span></span><br><span class="line">    str = [str blanks(<span class="number">16</span> - modStr)]; <span class="comment">% Filling strings for encryption</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="built_in">disp</span>(str);</span><br><span class="line">input = String(str);</span><br><span class="line">encrypted = AesEncrypt(input, key, iv);</span><br><span class="line"><span class="built_in">disp</span>(encrypted);</span><br><span class="line">input = String(encrypted);</span><br><span class="line">decrypted = AesDecrypt(input, key, iv);</span><br><span class="line"><span class="built_in">disp</span>(decrypted)</span><br></pre></td></tr></table></figure>
+
+<h3 id="실행-결과"><a href="#실행-결과" class="headerlink" title="실행 결과"></a>실행 결과</h3><ul>
+<li><p>원본 문자 → 암호화 → 복호화 (원본 문자)로 변환하는데 성공 하였습니다.<br><img src="/images/2022-6-8-220608_1/Untitled.png"></p>
+</li>
+<li><p>전체 소스코드는 아래 링크를 참조하세요.<br><a target="_blank" rel="noopener" href="https://github.com/chopthal/matlab/tree/master/aes_dotnet">matlab&#x2F;aes_dotnet at master · chopthal&#x2F;matlab</a></p>
+</li>
+<li><p>첫 번째 방법에서 예로 든, 16 MB 문자의를 처리하는 경우 약 0.5초 이내에 암호화 및 복호화가 수행됩니다.</p>
+</li>
+<li><p>16개 문자를 처리하는데 걸리는 시간은 약 10 ms로 첫 번째 방법 (6 ms)에 비해 오래 걸립니다.</p>
+</li>
+<li><p>실제로 16개 문자를 처리할 때와 10,000개 문자를 처리할 때 10 ms 내외로 시간이 소요됩니다.</p>
+</li>
+<li><p>따라서, 긴 문장을 처리하는 경우, MATLAB의 반복문을 도는 시간을 MemoryStream을 통해 단축시킴으로써 많은 시간을 단축할 수 있습니다.</p>
+</li>
+</ul>
+
+  </div>
+</article>
+
+    <div class="blog-post-comments">
+        <div id="disqus_thread">
+            <noscript>코멘트를 보려면 자바스크립트를 활성화하세요.</noscript>
+        </div>
+    </div>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/">홈</a></li>
+        
+          <li><a href="/about/">소개</a></li>
+        
+          <li><a href="/archives/">글 목록</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%EC%95%94%ED%98%B8%ED%99%94-%EB%B0%8F-%EB%B3%B5%ED%98%B8%ED%99%94-%EA%B0%80%EB%8A%A5%ED%95%9C-AES-%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98%EC%9D%84-MATLAB%EC%97%90%EC%84%9C-%ED%99%9C%EC%9A%A9%ED%95%98%EB%8A%94-%EB%91%90-%EA%B0%80%EC%A7%80-%EB%B0%A9%EB%B2%95%EC%97%90-%EB%8C%80%ED%95%B4-%EC%86%8C%EA%B0%9C%ED%95%A9%EB%8B%88%EB%8B%A4"><span class="toc-number">1.</span> <span class="toc-text">암호화 및 복호화 가능한 AES 알고리즘을 MATLAB에서 활용하는 두 가지 방법에 대해 소개합니다.</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EC%88%9C%EC%88%98-MATLAB-%EC%BD%94%EB%93%9C"><span class="toc-number"></span> <span class="toc-text">순수 MATLAB 코드</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#NET-class-%ED%99%9C%EC%9A%A9"><span class="toc-number"></span> <span class="toc-text">.NET class 활용</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%EC%95%94%ED%98%B8%ED%99%94-%ED%95%A8%EC%88%98"><span class="toc-number">1.</span> <span class="toc-text">암호화 함수</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EB%B3%B5%ED%98%B8%ED%99%94-%ED%95%A8%EC%88%98"><span class="toc-number">2.</span> <span class="toc-text">복호화 함수</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%ED%85%8C%EC%8A%A4%ED%8A%B8-%EC%BD%94%EB%93%9C"><span class="toc-number">3.</span> <span class="toc-text">테스트 코드</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EC%8B%A4%ED%96%89-%EA%B2%B0%EA%B3%BC"><span class="toc-number">4.</span> <span class="toc-text">실행 결과</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://chopthal.github.io/2022/06/08/2022-6-8-220608_1/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://chopthal.github.io/2022/06/08/2022-6-8-220608_1/&text=(MATLAB) 양방향 암호화 (AES, .NET)"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://chopthal.github.io/2022/06/08/2022-6-8-220608_1/&title=(MATLAB) 양방향 암호화 (AES, .NET)"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://chopthal.github.io/2022/06/08/2022-6-8-220608_1/&is_video=false&description=(MATLAB) 양방향 암호화 (AES, .NET)"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=(MATLAB) 양방향 암호화 (AES, .NET)&body=Check out this article: https://chopthal.github.io/2022/06/08/2022-6-8-220608_1/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://chopthal.github.io/2022/06/08/2022-6-8-220608_1/&title=(MATLAB) 양방향 암호화 (AES, .NET)"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://chopthal.github.io/2022/06/08/2022-6-8-220608_1/&title=(MATLAB) 양방향 암호화 (AES, .NET)"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://chopthal.github.io/2022/06/08/2022-6-8-220608_1/&title=(MATLAB) 양방향 암호화 (AES, .NET)"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://chopthal.github.io/2022/06/08/2022-6-8-220608_1/&title=(MATLAB) 양방향 암호화 (AES, .NET)"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://chopthal.github.io/2022/06/08/2022-6-8-220608_1/&name=(MATLAB) 양방향 암호화 (AES, .NET)&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://chopthal.github.io/2022/06/08/2022-6-8-220608_1/&t=(MATLAB) 양방향 암호화 (AES, .NET)"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> 메뉴</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> 공유</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> 맨 위로</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    저작권 &copy;
+    
+    
+    2022-2023
+    Chopthal
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">홈</a></li><!--
+     --><!--
+       --><li><a href="/about/">소개</a></li><!--
+     --><!--
+       --><li><a href="/archives/">글 목록</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"클립보드에 복사하였습니다!\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "복사하였습니다!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+    <script type="text/javascript">
+        var disqus_shortname = 'chopthal';
+
+        (function(){
+            var dsq = document.createElement('script');
+            dsq.type = 'text/javascript';
+            dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        }());
+    </script>
+
+<!-- utterances Comments -->
+
+</body>
+</html>
