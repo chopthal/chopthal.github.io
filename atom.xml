@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Be greedy sustainably!</title>
+  <icon>https://chopthal.github.io/icon.png</icon>
+  
+  <link href="https://chopthal.github.io/atom.xml" rel="self"/>
+  
+  <link href="https://chopthal.github.io/"/>
+  <updated>2023-06-02T13:50:32.654Z</updated>
+  <id>https://chopthal.github.io/</id>
+  
+  <author>
+    <name>Chopthal</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>(Javascript) 스마트폰 자이로 센서를 이용한 지진계 app</title>
+    <link href="https://chopthal.github.io/2023/05/30/2023-5-30-230530_1/"/>
+    <id>https://chopthal.github.io/2023/05/30/2023-5-30-230530_1/</id>
+    <published>2023-05-30T01:30:37.000Z</published>
+    <updated>2023-06-02T13:50:32.654Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h3 id=&quot;핵심-기능&quot;&gt;&lt;a href=&quot;#핵심-기능&quot; class=&quot;headerlink&quot; title=&quot;핵심 기능&quot;&gt;&lt;/a&gt;핵심 기능&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Device motion api : iOS, Android 공통 (단, iOS 13+</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>(MATLAB) 양방향 암호화 (AES, .NET)</title>
+    <link href="https://chopthal.github.io/2022/06/08/2022-6-8-220608_1/"/>
+    <id>https://chopthal.github.io/2022/06/08/2022-6-8-220608_1/</id>
+    <published>2022-06-08T01:20:37.000Z</published>
+    <updated>2023-06-02T13:50:32.654Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h3 id=&quot;암호화-및-복호화-가능한-AES-알고리즘을-MATLAB에서-활용하는-두-가지-방법에-대해-소개합니다&quot;&gt;&lt;a href=&quot;#암호화-및-복호화-가능한-AES-알고리즘을-MATLAB에서-활용하는-두-가지-방법에-대해-소개합니다&quot;</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>(MATLAB) uihtml 로그인 기능 (hide password)</title>
+    <link href="https://chopthal.github.io/2022/05/18/2022-5-18-220518_1/"/>
+    <id>https://chopthal.github.io/2022/05/18/2022-5-18-220518_1/</id>
+    <published>2022-05-18T01:20:37.000Z</published>
+    <updated>2023-06-02T13:50:32.654Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;요구사항&quot;&gt;&lt;a href=&quot;#요구사항&quot; class=&quot;headerlink&quot; title=&quot;요구사항&quot;&gt;&lt;/a&gt;요구사항&lt;/h1&gt;&lt;ul&gt;
+&lt;li&gt;Password 입력 내용 감추기 (* 표시 등의 방법으로)&lt;/li&gt;
+&lt;li&gt;미입력 input 칸</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>(MATLAB) SHA256 암호화 기반 Login 기능 구현</title>
+    <link href="https://chopthal.github.io/2022/05/12/2022-5-12-220512_1/"/>
+    <id>https://chopthal.github.io/2022/05/12/2022-5-12-220512_1/</id>
+    <published>2022-05-12T01:20:37.000Z</published>
+    <updated>2023-06-02T13:50:32.654Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;필요기능&quot;&gt;&lt;a href=&quot;#필요기능&quot; class=&quot;headerlink&quot; title=&quot;필요기능&quot;&gt;&lt;/a&gt;필요기능&lt;/h2&gt;&lt;h3 id=&quot;계정-생성&quot;&gt;&lt;a href=&quot;#계정-생성&quot; class=&quot;headerlink&quot; title=&quot;계정</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>(VSCode) 한글 깨짐 현상</title>
+    <link href="https://chopthal.github.io/2022/04/23/2022-4-23-220423_1/"/>
+    <id>https://chopthal.github.io/2022/04/23/2022-4-23-220423_1/</id>
+    <published>2022-04-23T01:20:37.000Z</published>
+    <updated>2023-06-02T13:50:32.654Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;ul&gt;
+&lt;li&gt;톱니바퀴 아이콘 → Settings&lt;/li&gt;
+&lt;li&gt;Encoding 검색&lt;/li&gt;
+&lt;li&gt;Files:Encoding 설정 utf-8 → Korean(EUC-KR)로 변경&lt;br&gt;&lt;img</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>(MATLAB) Montage 함수 개선</title>
+    <link href="https://chopthal.github.io/2022/04/22/2022-4-22-220422_1/"/>
+    <id>https://chopthal.github.io/2022/04/22/2022-4-22-220422_1/</id>
+    <published>2022-04-22T01:20:37.000Z</published>
+    <updated>2023-06-02T13:50:32.653Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;Montage-함수&quot;&gt;&lt;a href=&quot;#Montage-함수&quot; class=&quot;headerlink&quot; title=&quot;Montage 함수&quot;&gt;&lt;/a&gt;Montage 함수&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;montage 함수는 여러장의 개별 이미지를 원하는</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>(MATLAB) Source control of App designer files (.mlapp)</title>
+    <link href="https://chopthal.github.io/2022/04/21/2022-4-21-220421_2/"/>
+    <id>https://chopthal.github.io/2022/04/21/2022-4-21-220421_2/</id>
+    <published>2022-04-21T01:30:37.000Z</published>
+    <updated>2023-06-02T13:50:32.653Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;Matlab의 GUI 프로그래밍 툴인 app designer는 최근 많은 업데이트를 거듭하면서 기존에는 Matlab을 통해 컴파일 하기 어려웠던 예쁜 디자인과 다양한 기능을 가진 PC app을 만드는 것이 가능해졌습니다.&lt;/p&gt;
+&lt;p&gt;다만,</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>(Git) Simple gitblog guide</title>
+    <link href="https://chopthal.github.io/2022/04/21/2022-4-21-220421_1/"/>
+    <id>https://chopthal.github.io/2022/04/21/2022-4-21-220421_1/</id>
+    <published>2022-04-21T01:20:37.000Z</published>
+    <updated>2023-06-02T13:50:32.653Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;Repository-name&quot;&gt;&lt;a href=&quot;#Repository-name&quot; class=&quot;headerlink&quot; title=&quot;Repository name&quot;&gt;&lt;/a&gt;Repository name&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>(MATLAB) Run MATLAB code in VSCode</title>
+    <link href="https://chopthal.github.io/2022/04/20/2022-4-20-220420_1/"/>
+    <id>https://chopthal.github.io/2022/04/20/2022-4-20-220420_1/</id>
+    <published>2022-04-20T01:20:37.000Z</published>
+    <updated>2023-06-02T13:50:32.653Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h3 id=&quot;Matlab-code-실행&quot;&gt;&lt;a href=&quot;#Matlab-code-실행&quot; class=&quot;headerlink&quot; title=&quot;Matlab code 실행&quot;&gt;&lt;/a&gt;Matlab code 실행&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Matlab</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+</feed>
