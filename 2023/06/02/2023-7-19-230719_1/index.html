@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang=kr>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="UIFigure 내에 UIAxes를 만들고 마우스가 UIAxes 위로 이동할 때 현재 좌표를 출력하는 간단한 UI를 만들어 봅시다. 먼저, axes 하나와 좌표를 표시할 label 하나를 생성합니다. 12345678910fig &#x3D; uifigure;ax &#x3D; uiaxes(fig);ax.Position(2) &#x3D; ax.Position(2) + 40;ax.Posit">
+<meta property="og:type" content="article">
+<meta property="og:title" content="(MATLAB) UIAxes 좌표 표시">
+<meta property="og:url" content="https://chopthal.github.io/2023/06/02/2023-7-19-230719_1/index.html">
+<meta property="og:site_name" content="Be greedy sustainably!">
+<meta property="og:description" content="UIFigure 내에 UIAxes를 만들고 마우스가 UIAxes 위로 이동할 때 현재 좌표를 출력하는 간단한 UI를 만들어 봅시다. 먼저, axes 하나와 좌표를 표시할 label 하나를 생성합니다. 12345678910fig &#x3D; uifigure;ax &#x3D; uiaxes(fig);ax.Position(2) &#x3D; ax.Position(2) + 40;ax.Posit">
+<meta property="og:locale">
+<meta property="og:image" content="https://chopthal.github.io/images/2023-7-19/Untitled.png">
+<meta property="og:image" content="https://chopthal.github.io/images/2023-7-19/Animation.gif">
+<meta property="og:image" content="https://chopthal.github.io/images/2023-7-19/Animation2.gif">
+<meta property="og:image" content="https://chopthal.github.io/images/2023-7-19/Animation3.gif">
+<meta property="article:published_time" content="2023-06-02T13:50:32.653Z">
+<meta property="article:modified_time" content="2023-07-19T13:28:31.501Z">
+<meta property="article:author" content="Chopthal">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://chopthal.github.io/images/2023-7-19/Untitled.png">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>(MATLAB) UIAxes 좌표 표시</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="Be greedy sustainably!" type="application/atom+xml">
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">홈</a></li><!--
+     --><!--
+       --><li><a href="/about/">소개</a></li><!--
+     --><!--
+       --><li><a href="/archives/">글 목록</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" aria-label="다음" href="/2023/05/30/2023-5-30-230530_1/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="맨 위로" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="공유" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">이전</span>
+      <span id="i-next" class="info" style="display:none;">다음</span>
+      <span id="i-top" class="info" style="display:none;">맨 위로</span>
+      <span id="i-share" class="info" style="display:none;">공유</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://chopthal.github.io/2023/06/02/2023-7-19-230719_1/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://chopthal.github.io/2023/06/02/2023-7-19-230719_1/&text=(MATLAB) UIAxes 좌표 표시"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://chopthal.github.io/2023/06/02/2023-7-19-230719_1/&title=(MATLAB) UIAxes 좌표 표시"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://chopthal.github.io/2023/06/02/2023-7-19-230719_1/&is_video=false&description=(MATLAB) UIAxes 좌표 표시"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=(MATLAB) UIAxes 좌표 표시&body=Check out this article: https://chopthal.github.io/2023/06/02/2023-7-19-230719_1/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://chopthal.github.io/2023/06/02/2023-7-19-230719_1/&title=(MATLAB) UIAxes 좌표 표시"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://chopthal.github.io/2023/06/02/2023-7-19-230719_1/&title=(MATLAB) UIAxes 좌표 표시"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://chopthal.github.io/2023/06/02/2023-7-19-230719_1/&title=(MATLAB) UIAxes 좌표 표시"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://chopthal.github.io/2023/06/02/2023-7-19-230719_1/&title=(MATLAB) UIAxes 좌표 표시"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://chopthal.github.io/2023/06/02/2023-7-19-230719_1/&name=(MATLAB) UIAxes 좌표 표시&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://chopthal.github.io/2023/06/02/2023-7-19-230719_1/&t=(MATLAB) UIAxes 좌표 표시"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        (MATLAB) UIAxes 좌표 표시
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">Chopthal</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2023-06-02T13:50:32.653Z" class="dt-published" itemprop="datePublished">2023-06-02</time>
+        
+      
+    </div>
+
+
+      
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <p>UIFigure 내에 UIAxes를 만들고 마우스가 UIAxes 위로 이동할 때 현재 좌표를 출력하는 간단한 UI를 만들어 봅시다.</p>
+<p>먼저, axes 하나와 좌표를 표시할 label 하나를 생성합니다.</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">fig = uifigure;</span><br><span class="line">ax = uiaxes(fig);</span><br><span class="line"></span><br><span class="line">ax.Position(<span class="number">2</span>) = ax.Position(<span class="number">2</span>) + <span class="number">40</span>;</span><br><span class="line">ax.Position(<span class="number">3</span>) = fig.Position(<span class="number">3</span>) - <span class="number">20</span>;</span><br><span class="line">ax.Position(<span class="number">4</span>) = fig.Position(<span class="number">4</span>) - <span class="number">50</span>;</span><br><span class="line"></span><br><span class="line">lb = uilabel(fig);</span><br><span class="line">lb.Position = [<span class="number">20</span>, <span class="number">5</span>, <span class="number">100</span>, <span class="number">50</span>];</span><br><span class="line">lb.Text = <span class="string">&#x27;(0.00, 0.00)&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/2023-7-19/Untitled.png"></p>
+<p>UIFigure 객체의 WindowButtonMotionFcn 속성을 사용합니다.</p>
+<p>이 속성은 UIFigure 내에서 마우스가 움직일 때 마다 동작하는 콜백 함수를 설정합니다.</p>
+<p>btnMotionFcn 이라는 이름의 콜백 함수를 입력합니다.</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fig.WindowButtonMotionFcn = @btnMotionFcn;</span><br></pre></td></tr></table></figure>
+
+<p>먼저, 콜백 함수 내에서 마우스의 현재 위치를 보여주는 코드를 작성해 보겠습니다.</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">btnMotionFcn</span><span class="params">(src, ~)</span></span></span><br><span class="line">    <span class="built_in">disp</span>(src.CurrentPoint);</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+<p>실행한 뒤 figure 위에서 마우스를 움직여보면 현재 좌표가 출력되는 것을 확인할 수 있습니다.</p>
+<p><img src="/images/2023-7-19/Animation.gif"></p>
+<p>이제 기본적인 틀은 완성 되었으므로 목표대로 axes의 좌표를 가져와서 label에 출력하는 코드를 작성합니다.</p>
+<p>이 때, axes와 label 객체는 findobj 함수를 통해 가져오고 axes 외부를 벗어나는 경우 좌표를 출력하지 않는 조건문을 추가합니다.</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">btnMotionFcn</span><span class="params">(src, ~)</span></span></span><br><span class="line">    ax = findobj(src, <span class="string">&#x27;Type&#x27;</span>, <span class="string">&#x27;Axes&#x27;</span>);</span><br><span class="line">    lb = findobj(src, <span class="string">&#x27;Type&#x27;</span>, <span class="string">&#x27;UILabel&#x27;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> ax.CurrentPoint(<span class="number">1</span>, <span class="number">3</span>) == <span class="number">1</span> &amp;&amp; ax.CurrentPoint(<span class="number">1</span>, <span class="number">1</span>) &gt;= ax.XLim(<span class="number">1</span>) &amp;&amp; ax.CurrentPoint(<span class="number">1</span>, <span class="number">1</span>) &lt;= ax.XLim(<span class="number">2</span>)</span><br><span class="line">        lb.Text = sprintf(<span class="string">&#x27;(%.2f, %.2f)&#x27;</span>, ax.CurrentPoint(<span class="number">1</span>, <span class="number">1</span>), ax.CurrentPoint(<span class="number">1</span>, <span class="number">2</span>));</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+<aside>
+💡 UIAxes 속성이 CurrentPoint는 아래와 같이 2x3 크기를 갖고 있으며, 이 코드에는 각 축의 front 값이 사용되었습니다.
+[xfront yfront zfront
+ xback  yback  zback]
+
+<p>참조 : <a target="_blank" rel="noopener" href="https://kr.mathworks.com/help/releases/R2019a/matlab/ref/matlab.ui.control.uiaxes-properties.html?searchHighlight=uiaxes%20properties&s_tid=doc_srchtitle">https://kr.mathworks.com/help/releases/R2019a/matlab/ref/matlab.ui.control.uiaxes-properties.html?searchHighlight=uiaxes properties&s_tid&#x3D;doc_srchtitle</a></p>
+</aside>
+
+<p>이제 마우스를 움직여보면 axes 내부에서만 좌표가 표시되는 것을 확인할 수 있습니다.</p>
+<p><img src="/images/2023-7-19/Animation2.gif"></p>
+<p>임의의 데이터를 plot하고, mouse pointer 옵션을 약간 변경해 봅시다.</p>
+<p><img src="/images/2023-7-19/Animation3.gif"></p>
+<p>전체 소스코드</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">fig = uifigure;</span><br><span class="line">ax = uiaxes(fig);</span><br><span class="line"></span><br><span class="line">ax.Position(<span class="number">2</span>) = ax.Position(<span class="number">2</span>) + <span class="number">40</span>;</span><br><span class="line">ax.Position(<span class="number">3</span>) = fig.Position(<span class="number">3</span>) - <span class="number">20</span>;</span><br><span class="line">ax.Position(<span class="number">4</span>) = fig.Position(<span class="number">4</span>) - <span class="number">50</span>;</span><br><span class="line"></span><br><span class="line">lb = uilabel(fig);</span><br><span class="line">lb.Position = [<span class="number">20</span>, <span class="number">5</span>, <span class="number">100</span>, <span class="number">50</span>];</span><br><span class="line">lb.Text = <span class="string">&#x27;(0.00, 0.00)&#x27;</span>;</span><br><span class="line"></span><br><span class="line">fig.WindowButtonMotionFcn = @btnMotionFcn;</span><br><span class="line">x = <span class="number">1</span>:<span class="number">100</span>;</span><br><span class="line">y = <span class="built_in">sin</span>(x);</span><br><span class="line"><span class="built_in">plot</span>(ax, x, y);</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">btnMotionFcn</span><span class="params">(src, ~)</span></span></span><br><span class="line"></span><br><span class="line">    src.Pointer = <span class="string">&#x27;arrow&#x27;</span>;</span><br><span class="line">    ax = findobj(src, <span class="string">&#x27;Type&#x27;</span>, <span class="string">&#x27;Axes&#x27;</span>);</span><br><span class="line">    lb = findobj(src, <span class="string">&#x27;Type&#x27;</span>, <span class="string">&#x27;UILabel&#x27;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> ax.CurrentPoint(<span class="number">1</span>, <span class="number">3</span>) == <span class="number">1</span> &amp;&amp; ax.CurrentPoint(<span class="number">1</span>, <span class="number">1</span>) &gt;= ax.XLim(<span class="number">1</span>) &amp;&amp; ax.CurrentPoint(<span class="number">1</span>, <span class="number">1</span>) &lt;= ax.XLim(<span class="number">2</span>)</span><br><span class="line">        lb.Text = sprintf(<span class="string">&#x27;(%.2f, %.2f)&#x27;</span>, ax.CurrentPoint(<span class="number">1</span>, <span class="number">1</span>), ax.CurrentPoint(<span class="number">1</span>, <span class="number">2</span>));</span><br><span class="line">        src.Pointer = <span class="string">&#x27;crosshair&#x27;</span>;</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+  </div>
+</article>
+
+    <div class="blog-post-comments">
+        <div id="disqus_thread">
+            <noscript>코멘트를 보려면 자바스크립트를 활성화하세요.</noscript>
+        </div>
+    </div>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/">홈</a></li>
+        
+          <li><a href="/about/">소개</a></li>
+        
+          <li><a href="/archives/">글 목록</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://chopthal.github.io/2023/06/02/2023-7-19-230719_1/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://chopthal.github.io/2023/06/02/2023-7-19-230719_1/&text=(MATLAB) UIAxes 좌표 표시"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://chopthal.github.io/2023/06/02/2023-7-19-230719_1/&title=(MATLAB) UIAxes 좌표 표시"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://chopthal.github.io/2023/06/02/2023-7-19-230719_1/&is_video=false&description=(MATLAB) UIAxes 좌표 표시"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=(MATLAB) UIAxes 좌표 표시&body=Check out this article: https://chopthal.github.io/2023/06/02/2023-7-19-230719_1/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://chopthal.github.io/2023/06/02/2023-7-19-230719_1/&title=(MATLAB) UIAxes 좌표 표시"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://chopthal.github.io/2023/06/02/2023-7-19-230719_1/&title=(MATLAB) UIAxes 좌표 표시"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://chopthal.github.io/2023/06/02/2023-7-19-230719_1/&title=(MATLAB) UIAxes 좌표 표시"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://chopthal.github.io/2023/06/02/2023-7-19-230719_1/&title=(MATLAB) UIAxes 좌표 표시"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://chopthal.github.io/2023/06/02/2023-7-19-230719_1/&name=(MATLAB) UIAxes 좌표 표시&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://chopthal.github.io/2023/06/02/2023-7-19-230719_1/&t=(MATLAB) UIAxes 좌표 표시"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> 메뉴</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> 공유</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> 맨 위로</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    저작권 &copy;
+    
+    
+    2022-2023
+    Chopthal
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">홈</a></li><!--
+     --><!--
+       --><li><a href="/about/">소개</a></li><!--
+     --><!--
+       --><li><a href="/archives/">글 목록</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"클립보드에 복사하였습니다!\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "복사하였습니다!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+    <script type="text/javascript">
+        var disqus_shortname = 'chopthal';
+
+        (function(){
+            var dsq = document.createElement('script');
+            dsq.type = 'text/javascript';
+            dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        }());
+    </script>
+
+<!-- utterances Comments -->
+
+</body>
+</html>

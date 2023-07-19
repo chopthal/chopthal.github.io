@@ -6,7 +6,7 @@
   <link href="https://chopthal.github.io/atom.xml" rel="self"/>
   
   <link href="https://chopthal.github.io/"/>
-  <updated>2023-06-02T13:50:32.654Z</updated>
+  <updated>2023-07-19T13:28:31.501Z</updated>
   <id>https://chopthal.github.io/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>(MATLAB) UIAxes 좌표 표시</title>
+    <link href="https://chopthal.github.io/2023/06/02/2023-7-19-230719_1/"/>
+    <id>https://chopthal.github.io/2023/06/02/2023-7-19-230719_1/</id>
+    <published>2023-06-02T13:50:32.653Z</published>
+    <updated>2023-07-19T13:28:31.501Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;UIFigure 내에 UIAxes를 만들고 마우스가 UIAxes 위로 이동할 때 현재 좌표를 출력하는 간단한 UI를 만들어 봅시다.&lt;/p&gt;
+&lt;p&gt;먼저, axes 하나와 좌표를 표시할 label 하나를 생성합니다.&lt;/p&gt;
+&lt;figure</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
   
   <entry>
     <title>(Javascript) 스마트폰 자이로 센서를 이용한 지진계 app</title>
